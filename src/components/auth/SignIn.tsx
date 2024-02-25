@@ -1,11 +1,10 @@
 import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import ErrorMsg from '../../components/ErrorMsg'
+import ErrorMsg from '../ErrorMsg'
 import Container from '../shared/Container'
-import { Link } from 'react-router-dom'
 
-export default function SignUp() {
+export default function SignIn() {
   const formSchema = z.object({
     username: z
       .string()
@@ -60,8 +59,10 @@ export default function SignUp() {
         name='form'
         onSubmit={handleSubmit(onSubmitHandler, onErrorHandler)}
       >
-        <div className='form-container relative mx-auto max-w-md rounded-md border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] px-6 py-10 lg:px-8'>
-          <h1 className='mb-4 block text-2xl font-bold'>Sign up</h1>
+        <div className='form-container mx-auto max-w-md rounded-md border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] px-6 py-10 lg:px-8'>
+          <h1 className='mb-4 block text-2xl font-bold'>
+            Sign in (work with only signup)
+          </h1>
           {/* -- username -- */}
           <div className='relative'>
             <input
@@ -131,15 +132,6 @@ export default function SignUp() {
               </a>
             </div>
           </div>
-
-          <p className=' absolute left-1/2 top-[105%] min-w-72 -translate-x-1/2 text-center'>
-            <span>Already have an account?</span>{' '}
-            <span>
-              <Link to='/auth/signin' className='link hover:no-underline'>
-                Sign in
-              </Link>
-            </span>
-          </p>
         </div>
       </form>
     </Container>

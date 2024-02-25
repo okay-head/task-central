@@ -1,9 +1,13 @@
+import { Link } from 'react-router-dom'
+
 export default function Navbar() {
   return (
     <div>
-      <div className='navbar bg-base-100 fixed shadow-md lg:px-8'>
+      <div className='navbar bg-base-100 fixed shadow lg:px-8'>
         <div className='flex-1'>
-          <a className='btn btn-ghost text-xl'>Task Central</a>
+          <Link to='/' className='btn btn-ghost text-xl'>
+            Task Central
+          </Link>
         </div>
         <div className='flex-none gap-2'>
           <div className='form-control'>

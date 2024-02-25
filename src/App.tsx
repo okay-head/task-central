@@ -1,7 +1,10 @@
 import { Toaster } from 'react-hot-toast'
-// import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/nav/Navbar'
 import SignUp from './components/auth/SignUp'
+import Home from './components/Home'
+import NotFound from './components/NotFound'
+import SignIn from './components/auth/SignIn'
 
 //   import { useEffect } from 'react'
 // import 'preline/preline'
@@ -21,28 +24,30 @@ export default function App() {
     <div className='app'>
       <Navbar />
       <Toaster />
-      <SignUp />
-      {/* <Routes> */}
-      {/* <Route path='/' /> */}
-      {/* <Route index element={<Home />} /> */}
-      {/* <Route path='/auth'> */}
-      {/* <Route index element={<NotFound />} /> */}
-      {/* <Route path='signin' element={<SignIn />} /> */}
-      {/* <Route path='signup' element={<SignUp />} /> */}
-      {/* </Route> */}
-      {/* <Route path='/users' element={<Users />} /> */}
+      {/* login signup home */}
+      <Routes>
+        <Route path='/' />
+        <Route index element={<Home />} />
+        <Route path='/auth'>
+          <Route index element={<NotFound />} />
+          <Route path='signin' element={<SignIn />} />
+          <Route path='signup' element={<SignUp />} />
+        </Route>
+        <Route path='*' element={<NotFound />} />
 
-      {/* --- Protected routes (Only accessible when signed in) --- */}
-      {/* <Route path='/:id' element={<CheckAuth />}> */}
-      {/* <Route index element={<NotFound />} /> */}
-      {/* <Route path='profile' element={<Profile />} /> */}
-      {/* <Route path='create' element={<CreateWave />} /> */}
-      {/* <Route path='logout' element={<Logout />} /> */}
-      {/* </Route> */}
-      {/* --- Protected routes end--- */}
+        {/* <Route path='/users' element={<Users />} /> */}
 
-      {/* <Route path='*' element={<NotFound />} /> */}
-      {/* </Routes> */}
+        {/* --- Protected routes (Only accessible when signed in) --- */}
+        {/* <Route path='/:id' element={<CheckAuth />}> */}
+        {/* <Route index element={<NotFound />} /> */}
+        {/* <Route path='profile' element={<Profile />} /> */}
+        {/* <Route path='create' element={<CreateWave />} /> */}
+        {/* <Route path='logout' element={<Logout />} /> */}
+        {/* </Route> */}
+        {/* --- Protected routes end--- */}
+
+        {/* <Route path='*' element={<NotFound />} /> */}
+      </Routes>
     </div>
   )
 }
