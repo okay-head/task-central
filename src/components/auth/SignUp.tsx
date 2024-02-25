@@ -66,7 +66,7 @@ export default function SignUp() {
           <div className='relative'>
             <input
               {...register('username')}
-              className='input input-bordered input-md mb-2 mt-4 w-full'
+              className='input input-md input-bordered mb-2 mt-4 w-full'
               type='text'
               name='username'
               id='username'
@@ -79,7 +79,7 @@ export default function SignUp() {
           <div className='relative'>
             <input
               {...register('email')}
-              className='input input-bordered input-md mb-2 mt-4 w-full'
+              className='input input-md input-bordered mb-2 mt-4 w-full'
               type='email'
               name='email'
               id='email'
@@ -92,7 +92,7 @@ export default function SignUp() {
           <div className='relative'>
             <input
               {...register('password')}
-              className='input input-bordered input-md mb-2 mt-4 w-full'
+              className='input input-md input-bordered mb-2 mt-4 w-full'
               type='password'
               name='password'
               id='password'

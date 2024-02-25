@@ -3,14 +3,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import ErrorMsg from '../shared/ErrorMsg'
 import Container from '../shared/Container'
+import { Link } from 'react-router-dom'
 
 export default function SignIn() {
   const formSchema = z.object({
-    username: z
-      .string()
-      .trim()
-      .min(1, 'Username is required')
-      .max(15, 'Username too long'),
+    // username: z
+    //   .string()
+    //   .trim()
+    //   .min(1, 'Username is required')
+    //   .max(15, 'Username too long'),
     email: z.string().trim().toLowerCase().min(1, 'Email is required').email(),
     password: z
       .string()
@@ -18,7 +19,7 @@ export default function SignIn() {
       .min(1, 'Password is required')
       .min(12, 'Password must be min 12 chars long')
       .max(24, 'Password can be a maximum of 24 chars long'),
-    checkbox: z.boolean(),
+    // checkbox: z.boolean(),
   })
 
   //single source of truth
@@ -30,13 +31,13 @@ export default function SignIn() {
     handleSubmit,
     formState: { errors },
     reset,
-    watch,
+    // watch,
   } = useForm<TForm>({
     defaultValues: {
-      username: '',
+      // username: '',
       email: '',
       password: '',
-      checkbox: false,
+      // checkbox: false,
     },
     resolver: zodResolver(formSchema),
   })
@@ -50,7 +51,7 @@ export default function SignIn() {
   }
   const onErrorHandler: SubmitErrorHandler<TForm> = (err) => console.error(err)
 
-  const isChecked = watch('checkbox')
+  // const isChecked = watch('checkbox')
 
   return (
     <Container>
@@ -59,28 +60,26 @@ export default function SignIn() {
         name='form'
         onSubmit={handleSubmit(onSubmitHandler, onErrorHandler)}
       >
-        <div className='form-container mx-auto max-w-md rounded-md border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] px-6 py-10 lg:px-8'>
-          <h1 className='mb-4 block text-2xl font-bold'>
-            Sign in (work with only signup)
-          </h1>
+        <div className='form-container relative mx-auto max-w-md rounded-md border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] px-6 py-10 lg:px-8'>
+          <h1 className='mb-4 block text-2xl font-bold'>Sign in</h1>
           {/* -- username -- */}
-          <div className='relative'>
+          {/* <div className='relative'>
             <input
               {...register('username')}
-              className='input input-bordered input-md mb-2 mt-4 w-full'
+              className='input input-md input-bordered mb-2 mt-4 w-full'
               type='text'
               name='username'
               id='username'
               placeholder='Enter Username'
             />
             <ErrorMsg>{errors?.username?.message}</ErrorMsg>
-          </div>
+          </div> */}
 
           {/* email */}
           <div className='relative'>
             <input
               {...register('email')}
-              className='input input-bordered input-md mb-2 mt-4 w-full'
+              className='input input-md input-bordered mb-2 mt-4 w-full'
               type='email'
               name='email'
               id='email'
@@ -93,7 +92,7 @@ export default function SignIn() {
           <div className='relative'>
             <input
               {...register('password')}
-              className='input input-bordered input-md mb-2 mt-4 w-full'
+              className='input input-md input-bordered mb-2 mt-4 w-full'
               type='password'
               name='password'
               id='password'
@@ -104,15 +103,14 @@ export default function SignIn() {
 
           <div>
             <button
-              disabled={!isChecked}
               form='form'
               id='submit'
               className='btn btn-wide mx-auto my-4 block'
             >
-              <span className='text-container mx-auto max-w-max'>Sign up</span>
+              <span className='text-container mx-auto max-w-max'>Sign in</span>
             </button>
           </div>
-          <div className='mx-auto my-4 -mb-1 mt-8 flex max-w-max flex-col items-center gap-3 text-sm lg:flex-row lg:gap-0'>
+          {/* <div className='mx-auto my-4 -mb-1 mt-8 flex max-w-max flex-col items-center gap-3 text-sm lg:flex-row lg:gap-0'>
             <input
               {...register('checkbox')}
               type='checkbox'
@@ -131,7 +129,16 @@ export default function SignIn() {
                 Terms and Services
               </a>
             </div>
-          </div>
+          </div> */}
+
+          <p className=' absolute left-1/2 top-[105%] min-w-72 -translate-x-1/2 text-center'>
+            <span>Don't have an account?</span>{' '}
+            <span>
+              <Link to='/auth/signup' className='link hover:no-underline'>
+                Sign up
+              </Link>
+            </span>
+          </p>
         </div>
       </form>
     </Container>

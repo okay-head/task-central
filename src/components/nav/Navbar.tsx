@@ -4,7 +4,7 @@ export default function Navbar() {
   const isSignedIn = false
   return (
     <div>
-      <div className='navbar bg-base-100 fixed shadow lg:px-8'>
+      <div className='navbar fixed bg-base-100 shadow lg:px-8'>
         <div className='flex-1'>
           <Link to='/' className='btn btn-ghost text-xl'>
             Task Central
@@ -22,19 +22,16 @@ export default function Navbar() {
             <div
               tabIndex={0}
               role='button'
-              className='btn btn-ghost btn-circle avatar'
+              className='avatar btn btn-circle btn-ghost'
             >
               <div className='w-9 rounded-full'>
-                <img
-                  alt='Tailwind CSS Navbar component'
-                  src='https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'
-                />
+                <img alt='Avatar' src='/user.webp' />
               </div>
             </div>
             {isSignedIn ? (
               <ul
                 tabIndex={0}
-                className='menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-48 border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] shadow lg:px-2 lg:py-4'
+                className='menu dropdown-content menu-sm z-[1] mt-3 w-48 rounded-box border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] bg-base-100 shadow lg:px-2 lg:py-4'
               >
                 <li>
                   <Link to='user/tasks' className='justify-between'>
@@ -48,7 +45,7 @@ export default function Navbar() {
             ) : (
               <ul
                 tabIndex={0}
-                className='menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-48 border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] shadow lg:px-2 lg:py-4'
+                className='menu dropdown-content menu-sm z-[1] mt-3 w-48 rounded-box border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] bg-base-100 shadow lg:px-2 lg:py-4'
               >
                 <li>
                   <Link to='auth/signin' className='justify-between'>
