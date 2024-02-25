@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import ErrorMsg from '../ErrorMsg'
+import ErrorMsg from '../shared/ErrorMsg'
 import Container from '../shared/Container'
 
 export default function SignIn() {

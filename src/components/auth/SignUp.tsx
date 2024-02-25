@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import ErrorMsg from '../../components/ErrorMsg'
+import ErrorMsg from '../shared/ErrorMsg'
 import Container from '../shared/Container'
 import { Link } from 'react-router-dom'
 

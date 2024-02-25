@@ -9,7 +9,7 @@ export default function NotFound() {
           <div className='max-auto w-full justify-center text-center lg:p-10'>
             <div className='mx-auto w-full justify-center'>
               <h1 className='mt-8 text-5xl font-medium tracking-tighter text-[--white-primary]'>
-                Not found
+                404 Not found
               </h1>
             </div>
             <div className='mx-auto mt-6 flex max-w-xl flex-col items-center justify-center gap-3 lg:flex-row'>
