@@ -23,6 +23,7 @@ import EditTask from './components/user/EditTask'
 // import Logout from './components/auth/Logout'
 
 export default function App() {
+  alert('Site still a WIP!')
   return (
     <div className='app'>
       <Navbar />

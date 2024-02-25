@@ -15,7 +15,7 @@ export default function NotFound() {
             <div className='mx-auto mt-6 flex max-w-xl flex-col items-center justify-center gap-3 lg:flex-row'>
               <Link
                 to='/'
-                className='text-primary link link-hover inline-flex items-center justify-center text-sm font-semibold duration-200 focus:outline-none focus-visible:outline-gray-600'
+                className='text-primary link-hover link inline-flex items-center justify-center text-sm font-semibold duration-200 focus:outline-none focus-visible:outline-gray-600'
               >
                 Back to home →
               </Link>{' '}

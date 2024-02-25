@@ -1,13 +1,13 @@
 export default function TaskCard() {
   return (
     <div className='task-card'>
-      <div className='card bg-base-300 w-96 shadow-xl'>
+      <div className='card w-96 bg-base-300 shadow-xl'>
         <div className='card-body'>
           <div className='-mb-3 -mt-2 flex items-end font-medium'>
-            <button className='btn btn-xs btn-ghost ms-auto text-xs text-slate-500 hover:text-[--white-primary]'>
+            <button className='btn btn-ghost btn-xs ms-auto text-xs text-slate-500 hover:text-[--white-primary]'>
               Edit
             </button>
-            <button className='btn btn-xs btn-ghost text-xs text-slate-500 hover:bg-red-700 hover:text-[--white-primary]'>
+            <button className='btn btn-ghost btn-xs text-xs text-slate-500 hover:bg-red-700 hover:text-[--white-primary]'>
               Remove
             </button>
           </div>

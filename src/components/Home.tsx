@@ -25,7 +25,7 @@ export default function Home() {
                 </Link>
                 <a
                   href=''
-                  className='text-primary link link-hover inline-flex items-center justify-center text-sm font-semibold duration-200 focus:outline-none focus-visible:outline-gray-600'
+                  className='text-primary link-hover link inline-flex items-center justify-center text-sm font-semibold duration-200 focus:outline-none focus-visible:outline-gray-600'
                 >
                   Code →
                 </a>{' '}
