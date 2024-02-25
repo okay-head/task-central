@@ -5,6 +5,9 @@ import SignUp from './components/auth/SignUp'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 import SignIn from './components/auth/SignIn'
+import Tasks from './components/user/Tasks'
+import Create from './components/user/Create'
+import EditTask from './components/user/EditTask'
 
 //   import { useEffect } from 'react'
 // import 'preline/preline'
@@ -38,12 +41,15 @@ export default function App() {
         {/* <Route path='/users' element={<Users />} /> */}
 
         {/* --- Protected routes (Only accessible when signed in) --- */}
-        {/* <Route path='/:id' element={<CheckAuth />}> */}
-        {/* <Route index element={<NotFound />} /> */}
-        {/* <Route path='profile' element={<Profile />} /> */}
-        {/* <Route path='create' element={<CreateWave />} /> */}
-        {/* <Route path='logout' element={<Logout />} /> */}
-        {/* </Route> */}
+        <Route path='/user'>
+          <Route index path='tasks' element={<Tasks />} />
+          <Route path='create' element={<Create />} />
+          <Route path='editTask' element={<EditTask />} />
+          <Route path='*' element={<NotFound />} />
+          <Route path='' element={<NotFound />} />{' '}
+          {/* right now it is empty, add a user profile later */}
+          {/* <Route path='logout' element={<Logout />} /> */}
+        </Route>
         {/* --- Protected routes end--- */}
 
         {/* <Route path='*' element={<NotFound />} /> */}
