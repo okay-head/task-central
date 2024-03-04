@@ -1,4 +1,13 @@
-export default function TaskCard({ title = 'Task' }: { title: string }) {
+export default function TaskCard({
+  title = 'Task',
+  _id: id,
+}: {
+  title: string
+  _id: string
+}) {
+  const handleDelete = () => {
+    console.log(id)
+  }
   return (
     <div className='task-card w-max'>
       <div className='card bg-base-300 shadow-xl'>
@@ -7,7 +16,10 @@ export default function TaskCard({ title = 'Task' }: { title: string }) {
             <button className='btn btn-ghost btn-xs ms-auto text-xs text-slate-500 hover:text-[--white-primary]'>
               Edit
             </button>
-            <button className='btn btn-ghost btn-xs text-xs text-slate-500 hover:bg-red-700 hover:text-[--white-primary]'>
+            <button
+              onClick={handleDelete}
+              className='btn btn-ghost btn-xs text-xs text-slate-500 hover:bg-red-700 hover:text-[--white-primary]'
+            >
               Remove
             </button>
           </div>

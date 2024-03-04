@@ -5,7 +5,7 @@ const getAllFn = async () => {
     const res = await axios.get('http://localhost:5500/items')
     return res.data
   } catch (error) {
-    return Promise.reject('TOAST: Error fetching data')
+    return Promise.reject(error)
   }
 }
 const getFn = async (id: string) => {

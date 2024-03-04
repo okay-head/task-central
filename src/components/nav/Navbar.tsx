@@ -11,7 +11,7 @@ export default function Navbar() {
           </Link>
         </div>
         <div className='flex-none gap-2'>
-          <Link to='user/tasks' className='mx-2'>
+          <Link to='user/tasks' className='btn btn-ghost btn-sm mx-2'>
             Tasks
           </Link>
           <div className='form-control'>

@@ -1,5 +1,5 @@
 import Container from '../shared/Container'
-import { getAllFn, getFn, postFn } from '../shared/apiCalls'
+import { postFn } from '../shared/apiCalls'
 // need to manually type this
 type T = {
   elements: {
@@ -20,23 +20,6 @@ export default function Create() {
       price: { value: price },
     } = form?.elements
     console.log(name, Number(quantity), Number(price))
-
-    // const id = value
-    // cors is a security measure to implement SOP
-    // console.log(await getAllFn())
-    // console.log(await getFn(id))
-    // update(id, payload)
-    // delete(id)
-
-    // GET one
-    //   try {
-    //     const response = await getFn(id)
-    //     console.log(response.name)
-    //   } catch (error) {
-    //     // toast.error(error)
-    //     console.log(error)
-    //   }
-    // }
 
     // POST
     try {
