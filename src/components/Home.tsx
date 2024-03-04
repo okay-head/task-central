@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Container from './shared/Container'
-const signedIn = true
+const signedIn = false
 export default function Home() {
   return (
     <Container>

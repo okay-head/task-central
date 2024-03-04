@@ -28,7 +28,7 @@ export default function Create() {
         quantity,
         price,
       })
-      console.log(response.data)
+      console.log(response)
     } catch (error: any) {
       // toast.error(error)
       console.log(error.code)

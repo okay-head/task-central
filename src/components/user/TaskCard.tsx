@@ -1,3 +1,5 @@
+import { deleteFn } from '../shared/apiCalls'
+
 export default function TaskCard({
   title = 'Task',
   _id: id,
@@ -5,8 +7,16 @@ export default function TaskCard({
   title: string
   _id: string
 }) {
-  const handleDelete = () => {
+  const handleDelete = async () => {
     console.log(id)
+    try {
+      const response = await deleteFn(id)
+      console.log(response)
+      window.location.reload()
+    } catch (error: any) {
+      // toast.error(error)
+      console.log(error.code)
+    }
   }
   return (
     <div className='task-card w-max'>

@@ -24,10 +24,18 @@ const postFn = async (payload: TPayload) => {
         'Content-Type': 'application/json',
       },
     })
-    return res
+    return res.data
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+const deleteFn = async (id: string) => {
+  try {
+    const res = await axios.delete('http://localhost:5500/items/' + id)
+    return res.data
   } catch (error) {
     return Promise.reject(error)
   }
 }
 
-export { getAllFn, getFn, postFn }
+export { getAllFn, getFn, postFn, deleteFn }
