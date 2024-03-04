@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Container from './shared/Container'
-const signedIn = false
+const signedIn = true
 export default function Home() {
   return (
     <Container>
@@ -24,7 +24,7 @@ export default function Home() {
                   Sign In
                 </Link>
                 <a
-                  href=''
+                  href='https://github.com/okay-head/task-central'
                   className='text-primary link-hover link inline-flex items-center justify-center text-sm font-semibold duration-200 focus:outline-none focus-visible:outline-gray-600'
                 >
                   Code →

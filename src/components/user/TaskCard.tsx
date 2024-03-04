@@ -1,7 +1,7 @@
-export default function TaskCard() {
+export default function TaskCard({ title = 'Task' }: { title: string }) {
   return (
-    <div className='task-card'>
-      <div className='card w-96 bg-base-300 shadow-xl'>
+    <div className='task-card w-max'>
+      <div className='card bg-base-300 shadow-xl'>
         <div className='card-body'>
           <div className='-mb-3 -mt-2 flex items-end font-medium'>
             <button className='btn btn-ghost btn-xs ms-auto text-xs text-slate-500 hover:text-[--white-primary]'>
@@ -23,7 +23,7 @@ export default function TaskCard() {
             </svg>
 
             <h2 className='card-title text-2xl text-[--white-primary]'>
-              Task #1
+              {title}
             </h2>
           </div>
           <p className='text-lg'>Pick up laundry from Downtown street</p>
