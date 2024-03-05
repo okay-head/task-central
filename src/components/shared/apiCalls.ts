@@ -1,8 +1,8 @@
 import axios from 'axios'
-
+const baseUrl = 'https://task-central-backend.onrender.com'
 const getAllFn = async () => {
   try {
-    const res = await axios.get('http://localhost:5500/items')
+    const res = await axios.get(`${baseUrl}/items`)
     return res.data
   } catch (error) {
     return Promise.reject(error)
@@ -10,7 +10,7 @@ const getAllFn = async () => {
 }
 const getFn = async (id: string) => {
   try {
-    const res = await axios.get('http://localhost:5500/items/' + id)
+    const res = await axios.get(`${baseUrl}/items/${id}`)
     // if (!res.data) return Promise.reject('Bad request')
     return res.data
   } catch (error) {
@@ -19,7 +19,7 @@ const getFn = async (id: string) => {
 }
 const postFn = async (payload: TPayload) => {
   try {
-    const res = await axios.post('http://localhost:5500/items', payload, {
+    const res = await axios.post(`${baseUrl}/items`, payload, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -31,7 +31,7 @@ const postFn = async (payload: TPayload) => {
 }
 const deleteFn = async (id: string) => {
   try {
-    const res = await axios.delete('http://localhost:5500/items/' + id)
+    const res = await axios.delete(`${baseUrl}/items/${id}`)
     return res.data
   } catch (error) {
     return Promise.reject(error)
