@@ -7,3 +7,28 @@
 :root {
   --white-primary: hsla(0, 0%, 90%);
 }
+
+#task-card-container-before,
+#task-card-container-after {
+  z-index: 10;
+  transition: 0.2s ease-in;
+  content: '';
+  height: 2px;
+  background-color: var(--white-primary);
+  position: absolute;
+  top: 30%;
+  left: 16%;
+  right: 50%;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+#task-card-container-after {
+  background-color: currentColor;
+  top: 61%;
+  left: 16%;
+  right: 8%;
+}
+
+.completed {
+  transform: scaleX(1) !important;
+}

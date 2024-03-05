@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { deleteFn } from '../shared/apiCalls'
 
 export default function TaskCard({
@@ -7,6 +8,16 @@ export default function TaskCard({
   title: string
   _id: string
 }) {
+  const [checked, setChecked] = useState(false)
+
+  function playAudio() {
+    var audio = new Audio(
+      'https://cdn.freesound.org/previews/683/683424_14670263-lq.mp3',
+      // 'https://cdn.freesound.org/previews/553/553027_9961300-lq.ogg',
+    )
+    audio.play()
+  }
+
   const handleDelete = async () => {
     console.log(id)
     try {
@@ -19,7 +30,15 @@ export default function TaskCard({
     }
   }
   return (
-    <div className='task-card w-max'>
+    <div className='task-card-container relative w-max'>
+      <span
+        id='task-card-container-before'
+        className={`${checked ? 'completed' : ''}`}
+      ></span>
+      <span
+        id='task-card-container-after'
+        className={`${checked ? 'completed' : ''}`}
+      ></span>
       <div className='card bg-base-300 shadow-xl'>
         <div className='card-body'>
           <div className='-mb-3 -mt-2 flex items-end font-medium'>
@@ -48,11 +67,21 @@ export default function TaskCard({
               {title}
             </h2>
           </div>
-          <p className='text-lg'>Pick up laundry from Downtown street</p>
-          <div className='form-control -mb-3 mt-2'>
+          <h4 className='-mt-1 mb-1 ms-8 text-sm text-neutral-400'>
+            1st Jan, 2024
+          </h4>
+          <p className='text ms-8'>Pick up laundry from Downtown street</p>
+          <div className='form-control -mb-3 ms-auto mt-2'>
             <label className='label max-w-[135px] cursor-pointer gap-2'>
+              <input
+                type='checkbox'
+                className='checkbox checkbox-xs'
+                onClick={() => {
+                  if (!checked) playAudio()
+                  setChecked((val) => !val)
+                }}
+              />
               <span className='label-text text-xs'>Mark as completed</span>
-              <input type='checkbox' className='checkbox checkbox-xs' />
             </label>
           </div>
         </div>
