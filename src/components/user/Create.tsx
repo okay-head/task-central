@@ -36,40 +36,44 @@ export default function Create() {
   }
   return (
     <Container>
-      <h1 className='mb-10 text-3xl'>Create</h1>
+      <h1 className='mb-10 w-full border-b pb-4 text-4xl text-[--white-primary]'>
+        Add task
+      </h1>
       <form
         id='form'
         onSubmit={(e) => {
           handleSubmit(e)
         }}
-        className='flex gap-3'
+        className='flex flex-col gap-3'
       >
-        <input
-          type='text'
-          name='name'
-          id='name'
-          placeholder='name'
-          className='input input-bordered w-full max-w-xs'
-          required
-        />
-        <input
-          type='number'
-          name='quantity'
-          id='quantity'
-          placeholder='quantity'
-          className='input input-bordered w-full max-w-xs'
-          required
-        />
-        <input
-          type='number'
-          name='price'
-          id='price'
-          placeholder='price'
-          className='input input-bordered w-full max-w-xs'
-          required
-        />
-        <button type='submit' className='btn btn-outline'>
-          Create
+        <label className='form-control w-full max-w-xs'>
+          <div className='label'>
+            <span className='label-text'>Enter task title</span>
+          </div>
+          <input
+            type='text'
+            name='name'
+            id='name'
+            placeholder='add title'
+            className='input input-sm input-bordered w-full max-w-xs'
+            required
+          />
+        </label>
+        <label className='form-control w-full max-w-xs'>
+          <div className='label'>
+            <span className='label-text'>Description</span>
+          </div>
+          <textarea
+            name='description'
+            id='description'
+            placeholder='add description'
+            className='textarea textarea-bordered textarea-sm w-full max-w-xs'
+            required
+          />
+        </label>
+
+        <button type='submit' className='btn btn-sm mt-2 max-w-28'>
+          Add
         </button>
       </form>
     </Container>

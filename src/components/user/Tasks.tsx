@@ -22,12 +22,10 @@ export default function Tasks() {
 
   return (
     <Container>
-      <div className='mb-10 flex items-center gap-3'>
-        <h1 className='w-full border-b pb-4 text-4xl font-semibold text-[--white-primary]'>
-          Tasks
-        </h1>
-      </div>
-      <div className='tasks-container grid grid-cols-2 place-content-stretch gap-x-4 gap-y-8'>
+      <h1 className='mb-10 w-full border-b pb-4 text-4xl text-[--white-primary] '>
+        Tasks
+      </h1>
+      <div className='tasks-container flex grid-cols-2 flex-col place-content-stretch gap-x-4 gap-y-8 sm:flex-row md:grid'>
         {tasks?.length === 0 ? (
           <h2 className='text-lg'>No tasks</h2>
         ) : (

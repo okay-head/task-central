@@ -30,7 +30,7 @@ export default function TaskCard({
     }
   }
   return (
-    <div className='task-card-container relative w-max'>
+    <div className='task-card-container relative sm:w-max'>
       <span
         id='task-card-container-before'
         className={`${checked ? 'completed' : ''}`}
@@ -71,8 +71,9 @@ export default function TaskCard({
             1st Jan, 2024
           </h4>
           <p className='text ms-8'>Pick up laundry from Downtown street</p>
-          <div className='form-control -mb-3 ms-auto mt-2'>
+          <div className='form-control -mb-3 ms-8 mt-2'>
             <label className='label max-w-[135px] cursor-pointer gap-2'>
+              <span className='label-text text-xs'>Mark as completed</span>
               <input
                 type='checkbox'
                 className='checkbox checkbox-xs'
@@ -81,7 +82,6 @@ export default function TaskCard({
                   setChecked((val) => !val)
                 }}
               />
-              <span className='label-text text-xs'>Mark as completed</span>
             </label>
           </div>
         </div>
