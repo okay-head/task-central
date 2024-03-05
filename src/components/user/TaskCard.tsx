@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { deleteFn } from '../shared/apiCalls'
 
-export default function TaskCard({
-  title = 'Task',
-  _id: id,
-}: {
+type T = {
   title: string
+  description: string
   _id: string
-}) {
+}
+export default function TaskCard({ title = 'Task', _id: id, description }: T) {
   const [checked, setChecked] = useState(false)
 
   function playAudio() {
@@ -30,7 +29,7 @@ export default function TaskCard({
     }
   }
   return (
-    <div className='task-card-container relative sm:w-max'>
+    <div className='task-card-container relative sm:w-max md:w-[24rem]'>
       <span
         id='task-card-container-before'
         className={`${checked ? 'completed' : ''}`}
@@ -40,7 +39,7 @@ export default function TaskCard({
         className={`${checked ? 'completed' : ''}`}
       ></span>
       <div className='card bg-base-300 shadow-xl'>
-        <div className='card-body'>
+        <div className='card-body gap-[0.2rem]'>
           <div className='-mb-3 -mt-2 flex items-end font-medium'>
             <button className='btn btn-ghost btn-xs ms-auto text-xs text-slate-500 hover:text-[--white-primary]'>
               Edit
@@ -70,7 +69,7 @@ export default function TaskCard({
           <h4 className='-mt-1 mb-1 ms-8 text-sm text-neutral-400'>
             1st Jan, 2024
           </h4>
-          <p className='text ms-8'>Pick up laundry from Downtown street</p>
+          <p className='text ms-8'>{description}</p>
           <div className='form-control -mb-3 ms-8 mt-2'>
             <label className='label max-w-[135px] cursor-pointer gap-2'>
               <span className='label-text text-xs'>Mark as completed</span>

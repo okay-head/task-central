@@ -30,7 +30,14 @@ export default function Tasks() {
           <h2 className='text-lg'>No tasks</h2>
         ) : (
           tasks.map((x) => {
-            return <TaskCard key={x._id} title={x.name} _id={x._id} />
+            return (
+              <TaskCard
+                key={x._id}
+                title={x.title}
+                _id={x._id}
+                description={x.description}
+              />
+            )
           })
         )}
       </div>

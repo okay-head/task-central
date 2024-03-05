@@ -1,34 +1,33 @@
+import { useNavigate } from 'react-router-dom'
 import Container from '../shared/Container'
 import { postFn } from '../shared/apiCalls'
 // need to manually type this
 type T = {
   elements: {
-    name: { value: string }
-    quantity: { value: number }
-    price: { value: number }
+    title: { value: string }
+    description: { value: string }
   }
 }
 
 export default function Create() {
+  const navigate = useNavigate()
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const form = e.target as typeof e.target & T
     const {
-      name: { value: name },
-      quantity: { value: quantity },
-      price: { value: price },
+      title: { value: title },
+      description: { value: description },
     } = form?.elements
-    console.log(name, Number(quantity), Number(price))
 
     // POST
     try {
       const response = await postFn({
-        name,
-        quantity,
-        price,
+        title,
+        description,
       })
       console.log(response)
+      navigate('/user/tasks')
     } catch (error: any) {
       // toast.error(error)
       console.log(error.code)
@@ -52,8 +51,8 @@ export default function Create() {
           </div>
           <input
             type='text'
-            name='name'
-            id='name'
+            name='title'
+            id='title'
             placeholder='add title'
             className='input input-sm input-bordered w-full max-w-xs'
             required

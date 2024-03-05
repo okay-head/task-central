@@ -1,14 +1,10 @@
 type TPayload = {
-  name: string
-  quantity: number
-  price: number
+  title: string
+  description: string
 }
 
-type TMongoObject = {
+type TMongoObject = TPayload & {
   _id: string
-  name: string
-  quantity: number
-  price: number
   createdAt: string
   updatedAt: string
   __v: number
