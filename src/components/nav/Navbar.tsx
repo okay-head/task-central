@@ -4,15 +4,61 @@ export default function Navbar() {
   const isSignedIn = false
   return (
     <div>
-      <div className='navbar fixed bg-base-100 shadow lg:px-8'>
+      <div className='navbar fixed bg-base-100 py-3 shadow lg:px-8'>
         <div className='flex-1'>
           <Link to='/' className='btn btn-ghost text-xl'>
             Task Central
           </Link>
         </div>
         <div className='flex-none gap-2'>
+          <Link to='/user/create' className='btn btn-ghost btn-sm mx-2'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth={1.5}
+              stroke='currentColor'
+              className='h-5 w-5'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M12 4.5v15m7.5-7.5h-15'
+              />
+            </svg>
+            {/* <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth={1.5}
+              stroke='currentColor'
+              className='mt h-5 w-5'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
+              />
+            </svg> */}
+            Add task
+          </Link>
+
           <Link to='user/tasks' className='btn btn-ghost btn-sm mx-2'>
-            Tasks
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke-width='1.5'
+              stroke='currentColor'
+              className='h-5 w-5'
+            >
+              <path
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                d='M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z'
+              />
+            </svg>
+            All tasks
           </Link>
           <div className='form-control'>
             <input
