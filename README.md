@@ -1,7 +1,5 @@
 <h1 align="center">Taskcentral</h1>
 <p align="center">
-  [![Netlify Status]()]()
-
     <a href="https://app.netlify.com/sites/taskcentral/deploys" target="_blank">
     <img alt="Netlify badge" src="https://api.netlify.com/api/v1/badges/ffbaf82e-d9d7-416e-bbb6-3b61cd0beb37/deploy-status"/></a>
      <a href="/LICENSE" target="_blank">
@@ -12,7 +10,9 @@
   </a>
 </p>
 
-> <p align="center">Basic task management app based off MERN stack</p>
+<p align="center">Basic task management app based off MERN stack</p>
+
+
 
 <!-- ## [Demo](https://okay-head.netlify.app/)
 
@@ -61,7 +61,7 @@ pnpm dev
 
 ## Continued development
 
-- Design revamp: make it closer to anyDo app
+- Design revamp: make it closer to AnyDo app
 
 ## Author
 
