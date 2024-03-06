@@ -2,6 +2,7 @@ import Container from '../shared/Container'
 import TaskCard from './TaskCard'
 import { getAllFn } from '../shared/apiCalls'
 import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 export default function Tasks() {
   const [tasks, setTasks] = useState<TMongoObject[]>([])
@@ -10,6 +11,7 @@ export default function Tasks() {
     try {
       const response = await getAllFn()
       setTasks(response)
+      toast.dismiss()
     } catch (error: any) {
       // toast.error(error)
       console.log(error.code)
@@ -17,6 +19,14 @@ export default function Tasks() {
   }
 
   useEffect(() => {
+    toast.loading(
+      //only show this on the very first render
+      <span className='text-sm'>
+        Fetching data...
+        <br />
+        The delay might be due to cold starts of the dev environment
+      </span>,
+    )
     getTasks()
   }, [])
 
