@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { List, Plus } from 'react-feather'
+import { List, Plus, Moon } from 'react-feather'
 export default function Navbar() {
   const isSignedIn = false
   return (
@@ -9,6 +9,21 @@ export default function Navbar() {
           <Link to='/' className='btn btn-ghost btn-sm text-xl'>
             Task Central
           </Link>
+          <button
+            className='btn btn-ghost btn-xs'
+            onClick={() => {
+              const currentTheme = document
+                .getElementsByTagName('html')[0]
+                .getAttribute('data-theme')
+
+              const newTheme = currentTheme === 'dim' ? 'light' : 'dim'
+              document
+                .getElementsByTagName('html')[0]
+                .setAttribute('data-theme', newTheme)
+            }}
+          >
+            <Moon size={18} className='-ms-1 pt-[1px]' />
+          </button>
         </div>
         <div className='flex-none gap-2'>
           <Link
