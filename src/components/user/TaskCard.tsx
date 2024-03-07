@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { deleteFn } from '../shared/apiCalls'
+import { AxiosError } from 'axios'
 
 type T = {
   title: string
@@ -10,7 +11,7 @@ export default function TaskCard({ title = 'Task', _id: id, description }: T) {
   const [checked, setChecked] = useState(false)
 
   function playAudio() {
-    var audio = new Audio(
+    const audio = new Audio(
       'https://cdn.freesound.org/previews/683/683424_14670263-lq.mp3',
       // 'https://cdn.freesound.org/previews/553/553027_9961300-lq.ogg',
     )
@@ -23,9 +24,10 @@ export default function TaskCard({ title = 'Task', _id: id, description }: T) {
       const response = await deleteFn(id)
       console.log(response)
       window.location.reload()
-    } catch (error: any) {
+    } catch (error) {
       // toast.error(error)
-      console.log(error.code)
+      const err = error as AxiosError
+      console.log(err.code)
     }
   }
   return (

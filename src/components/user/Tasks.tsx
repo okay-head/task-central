@@ -3,6 +3,7 @@ import TaskCard from './TaskCard'
 import { getAllFn } from '../shared/apiCalls'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { AxiosError } from 'axios'
 
 export default function Tasks() {
   const [tasks, setTasks] = useState<TMongoObject[]>([])
@@ -12,9 +13,10 @@ export default function Tasks() {
       const response = await getAllFn()
       setTasks(response)
       toast.dismiss()
-    } catch (error: any) {
+    } catch (error) {
       // toast.error(error)
-      console.log(error.code)
+      const err = error as AxiosError
+      console.log(err.code)
     }
   }
 
