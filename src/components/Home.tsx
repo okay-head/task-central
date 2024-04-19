@@ -15,13 +15,13 @@ export default function Home() {
                   Tasks home
                 </h1>
                 <p className='mx-auto mt-4 max-w-xl text-lg tracking-tight'>
-                  Sign in to create and manage your tasks.
+                  Create and manage your tasks.
                 </p>
               </div>
               <div className='mx-auto mt-10 flex max-w-xl flex-col items-center justify-center gap-3 lg:flex-row'>
                 {' '}
-                <Link to='/auth/signin' className='btn'>
-                  Sign In
+                <Link to='/user/tasks' className='btn'>
+                  See Tasks
                 </Link>
                 <a
                   href='https://github.com/okay-head/task-central'

@@ -32,7 +32,7 @@ export default function TaskCard({ title = 'Task', _id: id, description }: T) {
   }
   return (
     <div className='task-card-container relative sm:w-max md:w-[24rem]'>
-      <span
+      <span 
         id='task-card-container-before'
         className={`${checked ? 'completed' : ''}`}
       ></span>
