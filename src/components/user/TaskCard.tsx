@@ -32,7 +32,7 @@ export default function TaskCard({ title = 'Task', _id: id, description }: T) {
   }
   return (
     <div className='task-card-container relative sm:w-max md:w-[24rem]'>
-      <span 
+      <span
         id='task-card-container-before'
         className={`${checked ? 'completed' : ''}`}
       ></span>
@@ -43,12 +43,12 @@ export default function TaskCard({ title = 'Task', _id: id, description }: T) {
       <div className='card bg-base-300 shadow-xl'>
         <div className='card-body gap-[0.2rem]'>
           <div className='-mb-3 -mt-2 flex items-end font-medium'>
-            <button className='btn btn-ghost btn-xs ms-auto text-xs text-slate-500 hover:text-[--white-primary]'>
+            <button className='hover: btn btn-ghost btn-xs ms-auto text-xs text-slate-500 '>
               Edit
             </button>
             <button
               onClick={handleDelete}
-              className='btn btn-ghost btn-xs text-xs text-slate-500 hover:bg-red-700 hover:text-[--white-primary]'
+              className='hover: btn btn-ghost btn-xs text-xs text-slate-500 hover:bg-red-700 '
             >
               Remove
             </button>
@@ -64,9 +64,7 @@ export default function TaskCard({ title = 'Task', _id: id, description }: T) {
               <path d='M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z' />
             </svg>
 
-            <h2 className='card-title text-2xl text-[--white-primary]'>
-              {title}
-            </h2>
+            <h2 className='card-title text-2xl  '>{title}</h2>
           </div>
           <h4 className='-mt-1 mb-1 ms-8 text-sm text-neutral-400'>
             1st Jan, 2024

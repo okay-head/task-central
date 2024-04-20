@@ -21,22 +21,26 @@ export default function Tasks() {
   }
 
   useEffect(() => {
-    toast.loading(
-      //only show this on the very first render
-      <span className='text-sm'>
-        Fetching data...
-        <br />
-        The delay might be due to cold starts of the dev environment
-      </span>,
-    )
+    const local = sessionStorage.getItem('firstLoad')
+    if (!local) {
+      toast.loading(
+        //only show this on the very first render
+        <span className='text-sm'>
+          Fetching data...
+          <br />
+          Can take upto a minute or two due to cold starts of the dev
+          environment
+        </span>,
+      )
+    }
+
+    sessionStorage.setItem('firstLoad', 'true')
     getTasks()
   }, [])
 
   return (
     <Container>
-      <h1 className='mb-10 w-full border-b pb-4 text-4xl text-[--white-primary] '>
-        Tasks
-      </h1>
+      <h1 className='mb-10 w-full border-b pb-4 text-4xl   '>Tasks</h1>
       <div className='tasks-container flex grid-cols-2 flex-col place-content-stretch gap-x-4 gap-y-8 sm:flex-row md:grid'>
         {tasks?.length === 0 ? (
           <h2 className='text-lg'>No tasks</h2>

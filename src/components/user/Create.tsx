@@ -35,9 +35,7 @@ export default function Create() {
   }
   return (
     <Container>
-      <h1 className='mb-10 w-full border-b pb-4 text-4xl text-[--white-primary]'>
-        Add task
-      </h1>
+      <h1 className='mb-10 w-full border-b pb-4 text-4xl  '>Add task</h1>
       <form
         id='form'
         onSubmit={(e) => {

@@ -11,7 +11,7 @@ export default function Home() {
           <div className='mx-auto max-w-7xl items-center px-8 py-12 md:px-12 lg:px-16 lg:py-24'>
             <div className='max-auto w-full justify-center text-center lg:p-10'>
               <div className='mx-auto w-full justify-center'>
-                <h1 className='mt-8 text-5xl font-medium tracking-tighter text-[--white-primary]'>
+                <h1 className='mt-8 text-5xl font-medium tracking-tighter  '>
                   Tasks home
                 </h1>
                 <p className='mx-auto mt-4 max-w-xl text-lg tracking-tight'>
