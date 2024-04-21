@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { deleteFn } from '../shared/apiCalls'
 import { AxiosError } from 'axios'
+import toast from 'react-hot-toast'
 
 type T = {
   title: string
@@ -19,6 +20,7 @@ export default function TaskCard({ title = 'Task', _id: id, description }: T) {
   }
 
   const handleDelete = async () => {
+    toast.success('Delete queued..')
     console.log(id)
     try {
       const response = await deleteFn(id)
@@ -43,12 +45,12 @@ export default function TaskCard({ title = 'Task', _id: id, description }: T) {
       <div className='card bg-base-300 shadow-xl'>
         <div className='card-body gap-[0.2rem]'>
           <div className='-mb-3 -mt-2 flex items-end font-medium'>
-            <button className='hover: btn btn-ghost btn-xs ms-auto text-xs text-slate-500 '>
+            {/* <button className='hover: btn btn-ghost btn-xs ms-auto text-xs text-slate-500 '>
               Edit
-            </button>
+            </button> */}
             <button
               onClick={handleDelete}
-              className='hover: btn btn-ghost btn-xs text-xs text-slate-500 hover:bg-red-700 '
+              className='btn btn-ghost btn-xs ms-auto text-xs text-slate-500 hover:bg-red-700 '
             >
               Remove
             </button>
