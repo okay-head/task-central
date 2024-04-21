@@ -4,26 +4,29 @@ import { getAllFn } from '../shared/apiCalls'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { AxiosError } from 'axios'
+import { useDebouncedCallback } from 'use-debounce'
 
 export default function Tasks() {
   const [tasks, setTasks] = useState<TMongoObject[]>([])
+
+  // decoupling controlled input state from filter query
+  const [input, setInput] = useState('')
   const [query, setQuery] = useState('')
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setQuery(e.target.value)
-
-  // debounce inside useCallback
-  const searchFn = (taskList: TMongoObject[]) => {
-    if (query == '') return taskList
-
-    // handle filter
-    const newArr = taskList.filter(
-      (task) =>
-        task.title.toLowerCase().includes(query) ||
-        task.description.toLowerCase().includes(query),
-    )
-    return newArr
+  const setInputFn = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value)
+    setQueryFn(e.target.value)
   }
+
+  const setQueryFn = useDebouncedCallback((val: string) => {
+    setQuery(val)
+  }, 200)
+
+  const filteredArray = tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(query) ||
+      task.description.toLowerCase().includes(query),
+  )
 
   const getTasks = async () => {
     try {
@@ -61,8 +64,8 @@ export default function Tasks() {
         <h1 className='text-4xl'>Tasks</h1>
         <div className='form-control'>
           <input
-            onChange={handleSearch}
-            value={query}
+            onChange={setInputFn}
+            value={input}
             type='text'
             placeholder='Search'
             className='input input-sm input-bordered hidden w-24 sm:inline-block md:w-auto'
@@ -70,10 +73,10 @@ export default function Tasks() {
         </div>
       </div>
       <div className='tasks-container flex grid-cols-2 flex-col place-content-stretch gap-x-4 gap-y-8 sm:flex-row md:grid'>
-        {tasks?.length === 0 ? (
+        {filteredArray?.length === 0 ? (
           <h2 className='text-lg'>No tasks</h2>
         ) : (
-          searchFn(tasks).map((x) => {
+          filteredArray?.map((x) => {
             return (
               <TaskCard
                 key={x._id}
