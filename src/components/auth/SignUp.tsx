@@ -46,7 +46,7 @@ export default function SignUp() {
   const onSubmitHandler: SubmitHandler<TForm> = (data) => {
     console.log(data)
     // [IMPROVEMENT] use react-toast-notifications instead
-    alert('Form submitted successfully')
+    alert('Authentication coming soon')
     reset() // reset the form
   }
   const onErrorHandler: SubmitErrorHandler<TForm> = (err) => console.error(err)
