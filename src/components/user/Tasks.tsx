@@ -83,6 +83,7 @@ export default function Tasks() {
                 title={x.title}
                 _id={x._id}
                 description={x.description}
+                updatedAt={x.updatedAt}
               />
             )
           })

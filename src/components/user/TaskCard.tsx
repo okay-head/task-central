@@ -2,13 +2,20 @@ import { useState } from 'react'
 import { deleteFn } from '../shared/apiCalls'
 import { AxiosError } from 'axios'
 import toast from 'react-hot-toast'
+import { format } from 'fecha'
 
 type T = {
   title: string
   description: string
   _id: string
+  updatedAt: string
 }
-export default function TaskCard({ title = 'Task', _id: id, description }: T) {
+export default function TaskCard({
+  title = 'Task',
+  _id: id,
+  description,
+  updatedAt,
+}: T) {
   const [checked, setChecked] = useState(false)
 
   function playAudio() {
@@ -32,6 +39,10 @@ export default function TaskCard({ title = 'Task', _id: id, description }: T) {
       console.log(err.code)
     }
   }
+
+  const parseDate = (dateStr: string) =>
+    format(new Date(dateStr), 'Do MMMM, YYYY')
+
   return (
     <div className='task-card-container relative sm:w-max md:w-[24rem]'>
       <span
@@ -69,7 +80,7 @@ export default function TaskCard({ title = 'Task', _id: id, description }: T) {
             <h2 className='card-title text-2xl  '>{title}</h2>
           </div>
           <h4 className='-mt-1 mb-1 ms-8 text-sm text-neutral-400'>
-            1st Jan, 2024
+            {parseDate(updatedAt)}
           </h4>
           <p className='text ms-8'>{description}</p>
           <div className='form-control -mb-3 ms-8 mt-2'>
