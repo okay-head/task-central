@@ -3,6 +3,8 @@ import { deleteFn } from '../api/apiCalls'
 import toast from 'react-hot-toast'
 import { format } from 'fecha'
 import { Edit, Trash, Edit2 } from 'react-feather'
+import { AxiosError } from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 type T = {
   title: string
@@ -18,12 +20,18 @@ export default function TaskCard({
 }: T) {
   const [checked, setChecked] = useState(false)
 
+  const navigate = useNavigate()
   function playAudio() {
     const audio = new Audio(
       'https://cdn.freesound.org/previews/683/683424_14670263-lq.mp3',
       // 'https://cdn.freesound.org/previews/553/553027_9961300-lq.ogg',
     )
     audio.play()
+  }
+
+  const handleEdit = () => {
+    const cardState = { title, id, description }
+    navigate('/user/editTask', { state: cardState })
   }
 
   const handleDelete = async () => {
@@ -34,7 +42,9 @@ export default function TaskCard({
       console.log(response)
       window.location.reload()
     } catch (error) {
-      const err = error.code || 'Unknown error. Check console'
+      // needlessly complicated because- types
+      let err: AxiosError | string = error as AxiosError
+      err = err.code || 'Unknown error. Check console'
       toast.error(err)
       console.log(error)
     }
@@ -56,7 +66,10 @@ export default function TaskCard({
       <div className='card bg-base-300 shadow-xl'>
         <div className='card-body gap-[0.2rem]'>
           <div className='-mb-3 -mt-2 flex items-end font-medium'>
-            <button className='hover: btn btn-ghost btn-xs ms-auto text-xs text-slate-500 '>
+            <button
+              onClick={handleEdit}
+              className='hover: btn btn-ghost btn-xs ms-auto text-xs text-slate-500 '
+            >
               <Edit2 size={16} />
             </button>
             <button

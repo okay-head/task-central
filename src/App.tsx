@@ -8,6 +8,7 @@ import SignIn from './components/auth/SignIn'
 import Tasks from './components/user/Tasks'
 import Create from './components/user/Create'
 import EditTask from './components/user/EditTask'
+import CreateEditShell from './components/user/CreateEditShell'
 
 //   import { useEffect } from 'react'
 // import 'preline/preline'
@@ -43,8 +44,8 @@ export default function App() {
         {/* --- Protected routes (Only accessible when signed in) --- */}
         <Route path='/user'>
           <Route index path='tasks' element={<Tasks />} />
-          <Route path='create' element={<Create />} />
-          <Route path='editTask' element={<EditTask />} />
+          <Route path='create' element={<CreateEditShell />} />
+          <Route path='editTask' element={<CreateEditShell />} />
           <Route path='*' element={<NotFound />} />
           <Route path='' element={<NotFound />} />{' '}
           {/* right now it is empty, add a user profile later */}
