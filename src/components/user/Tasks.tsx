@@ -4,6 +4,7 @@ import { getAllFn } from '../api/apiCalls'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useDebouncedCallback } from 'use-debounce'
+import { AxiosError } from 'axios'
 
 export default function Tasks() {
   const [tasks, setTasks] = useState<TMongoObject[]>([])
@@ -18,7 +19,7 @@ export default function Tasks() {
   }
 
   const setQueryFn = useDebouncedCallback((val: string) => {
-    setQuery(val)
+    setQuery(val.toLowerCase())
   }, 200)
 
   const filteredArray = tasks.filter(
@@ -31,9 +32,10 @@ export default function Tasks() {
     try {
       const response = await getAllFn()
       setTasks(response)
-      toast.dismiss()
     } catch (error) {
-      const err = error.code || 'Unknown error. Check console'
+      // needlessly complicated because- types
+      let err: AxiosError | string = error as AxiosError
+      err = err.code || 'Unknown error. Check console'
       toast.error(err)
       console.log(error)
     }

@@ -6,8 +6,6 @@ import Home from './components/Home'
 import NotFound from './components/NotFound'
 import SignIn from './components/auth/SignIn'
 import Tasks from './components/user/Tasks'
-import Create from './components/user/Create'
-import EditTask from './components/user/EditTask'
 import CreateEditShell from './components/user/CreateEditShell'
 
 //   import { useEffect } from 'react'
@@ -26,8 +24,8 @@ import CreateEditShell from './components/user/CreateEditShell'
 export default function App() {
   return (
     <div className='app'>
-      <Navbar />
       <Toaster />
+      <Navbar />
       {/* login signup home */}
       <Routes>
         <Route path='/' />

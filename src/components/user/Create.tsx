@@ -55,6 +55,7 @@ export default function Create({ mode, cardState = null }: T) {
           title,
           description,
         })
+        toast.success('Task created!', { duration: 850 })
         navigate('/user/tasks')
       } catch (error) {
         // needlessly complicated because- types
@@ -74,6 +75,7 @@ export default function Create({ mode, cardState = null }: T) {
           description,
         }))
       navigate('/user/tasks')
+      toast.success('Task updated!', { duration: 800 })
     } catch (error) {
       // needlessly complicated because- types
       let err: AxiosError | string = error as AxiosError
