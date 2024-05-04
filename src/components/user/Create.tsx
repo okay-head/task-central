@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import Container from '../shared/Container'
-import { postFn } from '../shared/apiCalls'
+import { postFn } from '../api/apiCalls'
+import toast from 'react-hot-toast'
 // need to manually type this
 type T = {
   elements: {
@@ -28,9 +29,10 @@ export default function Create() {
       })
       console.log(response)
       navigate('/user/tasks')
-    } catch (error: any) {
-      // toast.error(error)
-      console.log(error.code)
+    } catch (error: unknown) {
+      const err = error.code || 'Unknown error. Check console'
+      toast.error(err)
+      console.log(error)
     }
   }
   return (

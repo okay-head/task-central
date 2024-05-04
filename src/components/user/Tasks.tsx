@@ -1,9 +1,8 @@
 import Container from '../shared/Container'
 import TaskCard from './TaskCard'
-import { getAllFn } from '../shared/apiCalls'
+import { getAllFn } from '../api/apiCalls'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { AxiosError } from 'axios'
 import { useDebouncedCallback } from 'use-debounce'
 
 export default function Tasks() {
@@ -34,9 +33,9 @@ export default function Tasks() {
       setTasks(response)
       toast.dismiss()
     } catch (error) {
-      // toast.error(error)
-      const err = error as AxiosError
-      console.log(err.code)
+      const err = error.code || 'Unknown error. Check console'
+      toast.error(err)
+      console.log(error)
     }
   }
 
