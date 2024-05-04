@@ -9,6 +9,7 @@ const getAllFn = async () => {
     return Promise.reject(error)
   }
 }
+
 const getFn = async (id: string) => {
   try {
     const res = await axios.get(`${baseUrl}/tasks/${id}`)
@@ -18,6 +19,7 @@ const getFn = async (id: string) => {
     return Promise.reject('TOAST: Error fetching data')
   }
 }
+
 const postFn = async (payload: TPayload) => {
   try {
     const res = await axios.post(`${baseUrl}/tasks`, payload, {
@@ -30,6 +32,20 @@ const postFn = async (payload: TPayload) => {
     return Promise.reject(error)
   }
 }
+
+const patchFn = async (id: string, payload: TPayload) => {
+  try {
+    const res = await axios.patch(`${baseUrl}/tasks/${id}`, payload, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    return res.data
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
 const deleteFn = async (id: string) => {
   try {
     const res = await axios.delete(`${baseUrl}/tasks/${id}`)
@@ -39,4 +55,4 @@ const deleteFn = async (id: string) => {
   }
 }
 
-export { getAllFn, getFn, postFn, deleteFn }
+export { getAllFn, getFn, postFn, patchFn, deleteFn }
