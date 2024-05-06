@@ -3,11 +3,24 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import ErrorMsg from '../shared/ErrorMsg'
 import Container from '../shared/Container'
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import useGlobalStore from '../state/GlobalState'
+import toast from 'react-hot-toast'
+import { signupFn } from '../api/apiCalls'
+import { AxiosError } from 'axios'
 
 export default function SignUp() {
   const [disabled, setDisabled] = useState(false)
+  const { user, setUser } = useGlobalStore()
+  const { state } = useLocation()
+  const navigate = useNavigate()
+  const navigateTo = !state ? '/user/tasks' : state.to
+
+  // redirect already signed in users to /user/tasks
+  useEffect(() => {
+    if (user) navigate(navigateTo, { replace: true })
+  }, [navigate, user, navigateTo])
 
   const formSchema = z
     .object({
@@ -54,10 +67,35 @@ export default function SignUp() {
     resolver: zodResolver(formSchema),
   })
 
-  const onSubmitHandler: SubmitHandler<TForm> = (data) => {
-    console.log(data)
+  // On submit ✅
+  const onSubmitHandler: SubmitHandler<TForm> = async ({
+    email,
+    password,
+    username,
+  }) => {
+    toast.loading('Signing up', {
+      duration: 1300,
+    })
     setDisabled(true)
+    try {
+      const response: TUserMongo = await signupFn(email, password, username)
+
+      // introduce artificial delay for signup
+      setTimeout(() => {
+        setUser({ id: response._id, username: response.username })
+      }, 1000)
+    } catch (error) {
+      toast.dismiss()
+      const err = error as AxiosError
+
+      // @ts-expect-error: 'message' property is uniform for err objects
+      toast.error(`${err?.response?.data?.message}`)
+
+      console.error(err.response)
+      setDisabled(false)
+    }
   }
+
   const onErrorHandler: SubmitErrorHandler<TForm> = (err) => console.error(err)
 
   const isChecked = watch('checkbox')

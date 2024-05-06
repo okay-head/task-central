@@ -11,14 +11,14 @@ export default function Home() {
         <div className='mx-auto max-w-7xl items-center px-8 py-12 md:px-12 lg:px-16 lg:py-24'>
           <div className='max-auto w-full justify-center text-center lg:p-10'>
             <div className='mx-auto w-full justify-center'>
-              <h1 className='mt-8 text-5xl font-medium tracking-tighter  '>
+              <h1 className='mt-8 text-5xl font-medium tracking-tighter'>
                 Tasks home
               </h1>
               <p className='mx-auto mt-4 max-w-xl text-lg tracking-tight'>
                 Create and manage your tasks.
               </p>
             </div>
-            <div className='mx-auto mt-10 flex max-w-xl flex-col items-center justify-center gap-3 lg:flex-row'>
+            <div className='mx-auto mt-10 flex max-w-xl flex-col items-center justify-center gap-5 lg:flex-row'>
               {' '}
               <Link
                 to={!user ? '/auth/signin' : '/user/tasks'}

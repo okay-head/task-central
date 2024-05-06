@@ -52,8 +52,8 @@ export default function SignIn() {
     formState: { errors },
   } = useForm<TForm>({
     defaultValues: {
-      email: 'thfosres@ample.com',
-      password: 'maytheforcebewithyou',
+      email: 'bettercallsaul@lawyer.com',
+      password: 'B3tterCallS4ul',
     },
     resolver: zodResolver(formSchema),
   })

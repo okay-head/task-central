@@ -49,7 +49,7 @@ export default function Tasks() {
   return (
     <Container>
       <div className='mb-10 flex w-full items-end justify-between border-b pb-4'>
-        <h1 className='text-4xl'>Tasks</h1>
+        <h1 className='text-4xl font-semibold'>Tasks</h1>
         <div className='form-control'>
           <input
             onChange={setInputFn}

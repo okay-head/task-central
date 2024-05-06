@@ -103,7 +103,7 @@ export default function Create({ mode, cardState = null }: T) {
 
   return (
     <Container>
-      <h1 className='mb-10 w-full border-b pb-4 text-4xl'>
+      <h1 className='mb-10 w-full border-b pb-4 text-4xl font-semibold'>
         {mode == 'create' ? 'Add ' : 'Edit '}
         task
       </h1>

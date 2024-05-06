@@ -7,24 +7,9 @@ export default function Navbar() {
     <div>
       <div className='navbar fixed bg-base-100 py-3 shadow lg:px-8'>
         <div className='flex-1'>
-          <Link to='/' className='btn btn-ghost btn-sm text-xl'>
+          <Link to='/' className='btn btn-ghost btn-sm text-xl font-semibold'>
             Task Central
           </Link>
-          <button
-            className='btn btn-ghost btn-xs'
-            onClick={() => {
-              const currentTheme = document
-                .getElementsByTagName('html')[0]
-                .getAttribute('data-theme')
-
-              const newTheme = currentTheme === 'dim' ? 'light' : 'dim'
-              document
-                .getElementsByTagName('html')[0]
-                .setAttribute('data-theme', newTheme)
-            }}
-          >
-            <Moon size={18} className='-ms-1 pt-[1px]' />
-          </button>
         </div>
         <div className='flex-none gap-2'>
           {user && (
@@ -88,6 +73,21 @@ export default function Navbar() {
               </ul>
             )}
           </div>
+          <button
+            className='btn btn-ghost btn-sm -ms-1 py-1'
+            onClick={() => {
+              const currentTheme = document
+                .getElementsByTagName('html')[0]
+                .getAttribute('data-theme')
+
+              const newTheme = currentTheme === 'dim' ? 'light' : 'dim'
+              document
+                .getElementsByTagName('html')[0]
+                .setAttribute('data-theme', newTheme)
+            }}
+          >
+            <Moon size={24} className='' />
+          </button>
         </div>
       </div>
     </div>
