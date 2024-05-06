@@ -1,6 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'https://task-central-backend.onrender.com'
-// const baseUrl = 'http://localhost:8000'
+const baseUrl = import.meta.env.VITE_DB_BASE_URL
 const getAllFn = async () => {
   try {
     const res = await axios.get(`${baseUrl}/tasks`, { withCredentials: true })
