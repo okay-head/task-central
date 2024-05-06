@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { List, Plus, Moon } from 'react-feather'
+import useGlobalStore from '../state/GlobalState'
 export default function Navbar() {
+  const { user } = useGlobalStore()
   const isSignedIn = false
   return (
     <div>
@@ -27,29 +29,17 @@ export default function Navbar() {
         </div>
         <div className='flex-none gap-2'>
           <Link
-            to='/user/create'
+            to={!user ? '/auth/signin' : '/user/create'}
+            state={{ to: '/user/create' }}
             className='btn btn-ghost btn-xs sm:btn-sm sm:mx-2'
           >
             <Plus size={20} />
-            {/* <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='h-5 w-5'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M12 4.5v15m7.5-7.5h-15'
-              />
-            </svg> */}
             <span className='hidden md:inline-block'>Add task</span>
           </Link>
 
           <Link
-            to='user/tasks'
+            to={!user ? '/auth/signin' : '/user/tasks'}
+            state={{ to: '/user/tasks' }}
             className='btn btn-ghost btn-xs sm:btn-sm sm:mx-2'
           >
             <List size={20} />
@@ -87,6 +77,11 @@ export default function Navbar() {
                 <li>
                   <Link to='auth/signin' className='justify-between'>
                     Login
+                  </Link>
+                </li>
+                <li>
+                  <Link to='auth/logout' className='justify-between'>
+                    Logout
                   </Link>
                 </li>
               </ul>

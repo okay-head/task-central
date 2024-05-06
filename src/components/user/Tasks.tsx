@@ -1,15 +1,13 @@
 import Container from '../shared/Container'
 import TaskCard from './TaskCard'
 import { getAllFn } from '../api/apiCalls'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useDebouncedCallback } from 'use-debounce'
 import { AxiosError } from 'axios'
 
 export default function Tasks() {
   const [tasks, setTasks] = useState<TMongoObject[]>([])
-
-  const toastRef = useRef<null | string>(null)
 
   // setting up search query
   // decoupling controlled input state from filter query
@@ -47,30 +45,6 @@ export default function Tasks() {
     }
     getTasks()
   }, [])
-
-  // Cold start notification
-  useEffect(() => {
-    const local = sessionStorage.getItem('firstLoad')
-    //only show this on the very first render
-    if (!local) {
-      toastRef.current = toast.loading(
-        <span className='text-sm'>
-          Fetching data...
-          <br />
-          Can take upto a minute or two due to cold starts of the dev
-          environment
-        </span>,
-      )
-    }
-    // technically it shouldn't be a check of empty array, should set the array default state to null instead of []
-    if (tasks.length != 0 && toastRef.current) {
-      toast.dismiss(toastRef.current)
-      toastRef.current = null
-    }
-    sessionStorage.setItem('firstLoad', 'true')
-
-    return () => {}
-  }, [tasks.length])
 
   return (
     <Container>

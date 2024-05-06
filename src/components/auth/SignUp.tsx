@@ -4,23 +4,36 @@ import { z } from 'zod'
 import ErrorMsg from '../shared/ErrorMsg'
 import Container from '../shared/Container'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 export default function SignUp() {
-  const formSchema = z.object({
-    username: z
-      .string()
-      .trim()
-      .min(1, 'Username is required')
-      .max(15, 'Username too long'),
-    email: z.string().trim().toLowerCase().min(1, 'Email is required').email(),
-    password: z
-      .string()
-      .trim()
-      .min(1, 'Password is required')
-      .min(12, 'Password must be min 12 chars long')
-      .max(24, 'Password can be a maximum of 24 chars long'),
-    checkbox: z.boolean(),
-  })
+  const [disabled, setDisabled] = useState(false)
+
+  const formSchema = z
+    .object({
+      username: z
+        .string()
+        .trim()
+        .min(1, 'Username is required')
+        .max(15, 'Username too long'),
+      email: z
+        .string()
+        .trim()
+        .toLowerCase()
+        .min(1, 'Email is required')
+        .email(),
+      password: z
+        .string()
+        .trim()
+        .min(1, 'Password is required')
+        .min(12, 'Password must be min 12 chars long')
+        .max(24, 'Password can be a maximum of 24 chars long'),
+      checkbox: z.boolean(),
+    })
+    .refine((form) => form.email !== form.password, {
+      message: 'Password cannot be the same as email',
+      path: ['password'], // path of error
+    })
 
   //single source of truth
   type TForm = z.infer<typeof formSchema>
@@ -30,7 +43,6 @@ export default function SignUp() {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
     watch,
   } = useForm<TForm>({
     defaultValues: {
@@ -42,12 +54,9 @@ export default function SignUp() {
     resolver: zodResolver(formSchema),
   })
 
-  //SumbitHandler is an imported 'type'
   const onSubmitHandler: SubmitHandler<TForm> = (data) => {
     console.log(data)
-    // [IMPROVEMENT] use react-toast-notifications instead
-    alert('Authentication coming soon')
-    reset() // reset the form
+    setDisabled(true)
   }
   const onErrorHandler: SubmitErrorHandler<TForm> = (err) => console.error(err)
 
@@ -103,16 +112,23 @@ export default function SignUp() {
 
           <div>
             <button
-              disabled={!isChecked}
+              disabled={!isChecked || disabled}
               form='form'
               id='submit'
               className='btn btn-wide mx-auto my-4 block'
             >
-              <span className='text-container mx-auto max-w-max'>Sign up</span>
+              {isChecked && disabled ? (
+                <span className='loading loading-spinner loading-md'></span>
+              ) : (
+                <span className='text-container mx-auto max-w-max'>
+                  Sign up
+                </span>
+              )}
             </button>
           </div>
           <div className='mx-auto my-4 -mb-1 mt-8 flex max-w-max flex-col items-center gap-3 text-sm lg:flex-row lg:gap-0'>
             <input
+              disabled={disabled}
               {...register('checkbox')}
               type='checkbox'
               name='checkbox'

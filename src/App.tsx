@@ -9,6 +9,8 @@ import Tasks from './components/user/Tasks'
 import CreateEditShell from './components/user/CreateEditShell'
 import { useEffect, useRef, useState } from 'react'
 import { pingFn } from './components/api/apiCalls'
+import Logout from './components/auth/Logout'
+import CheckAuth from './components/auth/CheckAuth'
 
 export default function App() {
   const [ready, setReady] = useState(false)
@@ -64,18 +66,16 @@ export default function App() {
           <Route index element={<NotFound />} />
           <Route path='signin' element={<SignIn />} />
           <Route path='signup' element={<SignUp />} />
+          <Route path='logout' element={<Logout />} />
         </Route>
         <Route path='*' element={<NotFound />} />
 
-        {/* <Route path='/users' element={<Users />} /> */}
-
-        {/* --- Protected routes (Only accessible when signed in) --- */}
-        <Route path='/user'>
+        {/* --- 🔒--- */}
+        <Route path='/user' element={<CheckAuth />}>
           <Route index path='tasks' element={<Tasks />} />
           <Route path='create' element={<CreateEditShell />} />
           <Route path='editTask' element={<CreateEditShell />} />
           <Route path='*' element={<NotFound />} />
-          <Route path='' element={<NotFound />} />{' '}
           {/* right now it is empty, add a user profile later */}
           {/* <Route path='logout' element={<Logout />} /> */}
         </Route>

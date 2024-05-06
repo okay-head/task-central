@@ -1,41 +1,44 @@
 import { Link } from 'react-router-dom'
 import Container from './shared/Container'
-const signedIn = false
+import useGlobalStore from './state/GlobalState'
+
 export default function Home() {
+  const { user } = useGlobalStore()
+
   return (
     <Container>
-      {signedIn ? (
-        <h2>All Tasks</h2>
-      ) : (
-        <section>
-          <div className='mx-auto max-w-7xl items-center px-8 py-12 md:px-12 lg:px-16 lg:py-24'>
-            <div className='max-auto w-full justify-center text-center lg:p-10'>
-              <div className='mx-auto w-full justify-center'>
-                <h1 className='mt-8 text-5xl font-medium tracking-tighter  '>
-                  Tasks home
-                </h1>
-                <p className='mx-auto mt-4 max-w-xl text-lg tracking-tight'>
-                  Create and manage your tasks.
-                </p>
-              </div>
-              <div className='mx-auto mt-10 flex max-w-xl flex-col items-center justify-center gap-3 lg:flex-row'>
-                {' '}
-                <Link to='/user/tasks' className='btn'>
-                  See Tasks
-                </Link>
-                <a
-                  href='https://github.com/okay-head/task-central'
-                  target='_blank'
-                  rel='noopner noreferrer'
-                  className='text-primary link-hover link inline-flex items-center justify-center text-sm font-semibold duration-200 focus:outline-none focus-visible:outline-gray-600'
-                >
-                  Code →
-                </a>{' '}
-              </div>
+      <section>
+        <div className='mx-auto max-w-7xl items-center px-8 py-12 md:px-12 lg:px-16 lg:py-24'>
+          <div className='max-auto w-full justify-center text-center lg:p-10'>
+            <div className='mx-auto w-full justify-center'>
+              <h1 className='mt-8 text-5xl font-medium tracking-tighter  '>
+                Tasks home
+              </h1>
+              <p className='mx-auto mt-4 max-w-xl text-lg tracking-tight'>
+                Create and manage your tasks.
+              </p>
+            </div>
+            <div className='mx-auto mt-10 flex max-w-xl flex-col items-center justify-center gap-3 lg:flex-row'>
+              {' '}
+              <Link
+                to={!user ? '/auth/signin' : '/user/tasks'}
+                state={{ to: '/user/tasks' }}
+                className='btn'
+              >
+                See Tasks
+              </Link>
+              <a
+                href='https://github.com/okay-head/task-central'
+                target='_blank'
+                rel='noopner noreferrer'
+                className='text-primary link-hover link inline-flex items-center justify-center text-sm font-semibold duration-200 focus:outline-none focus-visible:outline-gray-600'
+              >
+                Code →
+              </a>{' '}
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
     </Container>
   )
 }

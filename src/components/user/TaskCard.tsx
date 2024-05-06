@@ -54,7 +54,7 @@ export default function TaskCard({
     format(new Date(dateStr), 'Do MMMM, YYYY')
 
   return (
-    <div className='task-card-container relative sm:w-max md:w-[24rem]'>
+    <div id={id} className='task-card-container relative sm:w-max md:w-[24rem]'>
       <span
         id='task-card-container-before'
         className={`${checked ? 'completed' : ''}`}
