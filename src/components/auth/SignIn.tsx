@@ -52,8 +52,8 @@ export default function SignIn() {
     formState: { errors },
   } = useForm<TForm>({
     defaultValues: {
-      email: '',
-      password: '',
+      email: 'thfosres@ample.com',
+      password: 'maytheforcebewithyou',
     },
     resolver: zodResolver(formSchema),
   })
@@ -72,6 +72,7 @@ export default function SignIn() {
         setUser({ id: response._id, username: response.username })
       }, 1000)
     } catch (error) {
+      toast.dismiss()
       const err = error as AxiosError
 
       // @ts-expect-error: 'message' property is uniform for err objects

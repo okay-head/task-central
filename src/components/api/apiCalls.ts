@@ -1,6 +1,6 @@
 import axios from 'axios'
-// const baseUrl = 'https://task-central-backend.onrender.com'
-const baseUrl = 'http://localhost:8000'
+const baseUrl = 'https://task-central-backend.onrender.com'
+// const baseUrl = 'http://localhost:8000'
 const getAllFn = async () => {
   try {
     const res = await axios.get(`${baseUrl}/tasks`, { withCredentials: true })

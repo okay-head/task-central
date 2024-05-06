@@ -14,8 +14,6 @@ type T = {
 }
 
 export default function Create({ mode, cardState = null }: T) {
-  console.log(mode)
-
   const [defaultValues, setDefaultValues] = useState({
     title: !cardState || mode == 'create' ? '' : cardState.title,
     description: !cardState || mode == 'create' ? '' : cardState.description,
@@ -46,6 +44,7 @@ export default function Create({ mode, cardState = null }: T) {
   })
   type TForm = z.infer<typeof formSchema>
 
+  // ✅ on submit
   const onSubmit: SubmitHandler<TForm> = async ({ title, description }) => {
     // POST OR PATCH depending on the mode
     if (mode == 'create') {

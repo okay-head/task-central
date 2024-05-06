@@ -3,7 +3,6 @@ import { List, Plus, Moon } from 'react-feather'
 import useGlobalStore from '../state/GlobalState'
 export default function Navbar() {
   const { user } = useGlobalStore()
-  const isSignedIn = false
   return (
     <div>
       <div className='navbar fixed bg-base-100 py-3 shadow lg:px-8'>
@@ -28,23 +27,27 @@ export default function Navbar() {
           </button>
         </div>
         <div className='flex-none gap-2'>
-          <Link
-            to={!user ? '/auth/signin' : '/user/create'}
-            state={{ to: '/user/create' }}
-            className='btn btn-ghost btn-xs sm:btn-sm sm:mx-2'
-          >
-            <Plus size={20} />
-            <span className='hidden md:inline-block'>Add task</span>
-          </Link>
+          {user && (
+            <Link
+              to={!user ? '/auth/signin' : '/user/create'}
+              state={{ to: '/user/create' }}
+              className='btn btn-ghost btn-xs sm:btn-sm sm:mx-2'
+            >
+              <Plus size={20} />
+              <span className='hidden md:inline-block'>Add task</span>
+            </Link>
+          )}
+          {user && (
+            <Link
+              to={!user ? '/auth/signin' : '/user/tasks'}
+              state={{ to: '/user/tasks' }}
+              className='btn btn-ghost btn-xs sm:btn-sm sm:mx-2'
+            >
+              <List size={20} />
+              <span className='hidden md:inline-block'>All tasks</span>
+            </Link>
+          )}
 
-          <Link
-            to={!user ? '/auth/signin' : '/user/tasks'}
-            state={{ to: '/user/tasks' }}
-            className='btn btn-ghost btn-xs sm:btn-sm sm:mx-2'
-          >
-            <List size={20} />
-            <span className='hidden md:inline-block'>All tasks</span>
-          </Link>
           <div className='dropdown dropdown-end'>
             <div
               tabIndex={0}
@@ -55,18 +58,13 @@ export default function Navbar() {
                 <img alt='Avatar' src='/user.webp' />
               </div>
             </div>
-            {isSignedIn ? (
+            {!user ? (
               <ul
                 tabIndex={0}
                 className='menu dropdown-content menu-sm z-[1] mt-3 w-48 rounded-box border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] bg-base-100 shadow lg:px-2 lg:py-4'
               >
                 <li>
-                  <Link to='user/tasks' className='justify-between'>
-                    My tasks
-                  </Link>
-                </li>
-                <li>
-                  <Link to='user/logout'>Logout</Link>
+                  <Link to='auth/signin'>Login</Link>
                 </li>
               </ul>
             ) : (
@@ -74,11 +72,14 @@ export default function Navbar() {
                 tabIndex={0}
                 className='menu dropdown-content menu-sm z-[1] mt-3 w-48 rounded-box border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] bg-base-100 shadow lg:px-2 lg:py-4'
               >
-                <li>
-                  <Link to='auth/signin' className='justify-between'>
-                    Login
-                  </Link>
-                </li>
+                <span className='mb-3 ms-3 flex flex-col border-b border-[var(--fallback-bc,oklch(var(--bc)/0.2))] pb-2'>
+                  <span className='mt-1 inline-block text-xs font-semibold opacity-80'>
+                    Logged in as
+                  </span>
+                  <span className='mt-1 inline-block font-semibold'>
+                    {user?.username}
+                  </span>
+                </span>
                 <li>
                   <Link to='auth/logout' className='justify-between'>
                     Logout

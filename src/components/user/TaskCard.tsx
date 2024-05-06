@@ -38,8 +38,8 @@ export default function TaskCard({
     toast.success('Delete queued..')
     console.log(id)
     try {
-      const response = await deleteFn(id)
-      console.log(response)
+      await deleteFn(id)
+
       window.location.reload()
     } catch (error) {
       // needlessly complicated because- types
