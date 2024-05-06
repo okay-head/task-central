@@ -87,6 +87,24 @@ const signinFn = async (email: string, password: string) => {
   }
 }
 
+const signupFn = async (email: string, password: string, username: string) => {
+  try {
+    const res = await axios.post(
+      `${baseUrl}/auth/signup`,
+      { email, password, username },
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
+    return res.data
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
 const logoutFn = async () => {
   try {
     const res = await axios.post(
@@ -107,5 +125,6 @@ export {
   deleteFn,
   pingFn,
   signinFn,
+  signupFn,
   logoutFn,
 }
