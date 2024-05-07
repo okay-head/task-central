@@ -36,8 +36,8 @@
 This project is built with
 
 ```
-pnpm v8.12.0
-node v20.7.0
+pnpm v8.12.1
+node v20.12.2
 ```
 
 1. If you want to install this repo locally.
@@ -45,15 +45,17 @@ node v20.7.0
 
 ```sh
 pnpm install
-```
-
-&nbsp;&nbsp;&nbsp;&nbsp;or
-
-```sh
+# or
 npm install
 ```
 
-2. Spin up the development server
+2. Add .env file at the root of project and add your server URL as follows
+
+```env
+VITE_DB_BASE_URL = http://localhost:8000
+```
+
+3. Spin up the development server
 
 ```sh
 pnpm dev
