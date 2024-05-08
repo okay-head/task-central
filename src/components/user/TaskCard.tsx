@@ -93,6 +93,7 @@ export default function TaskCard({
               <span className='label-text text-xs'>Mark as completed</span>
               <input
                 type='checkbox'
+                name='card-checkbox'
                 className='checkbox checkbox-xs'
                 onClick={() => {
                   if (!checked) playAudio()

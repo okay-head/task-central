@@ -57,11 +57,13 @@ export default function Create({ mode, cardState = null }: T) {
         toast.success('Task created!', { duration: 850 })
         navigate('/user/tasks')
       } catch (error) {
-        // needlessly complicated because- types
-        let err: AxiosError | string = error as AxiosError
-        err = err.code || 'Unknown error. Check console'
-        toast.error(err)
-        console.log(error)
+        const err = error as AxiosError
+
+        //@ts-expect-error fml
+        toast.error(err.response.data?.message, {
+          duration: 1800,
+        })
+        console.error(err.response)
       }
       return
     }

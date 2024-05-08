@@ -56,6 +56,7 @@ export default function Tasks() {
             value={input}
             type='text'
             placeholder='Search'
+            name='search'
             className='input input-sm input-bordered hidden w-24 sm:inline-block md:w-auto'
           />
         </div>
