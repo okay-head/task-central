@@ -25,7 +25,7 @@ export default function Tasks() {
     setQuery(val.toLowerCase())
   }, 200)
 
-  const filteredArray = tasks.filter(
+  const filteredArray = tasks?.filter(
     (task) =>
       task.title.toLowerCase().includes(query) ||
       task.description.toLowerCase().includes(query),
@@ -50,7 +50,9 @@ export default function Tasks() {
     // 🚄 PERFORMANCE: MOST BASIC GLOBAL STATE CACHING
     // only get tasks if the global state array is zero
     // this is incorrect because an array could be zero as well, check for null instead
-    if (tasks?.length === 0) getTasks()
+
+    // causing infinite network requests
+    if (!tasks) getTasks()
   }, [setTasks, tasks])
 
   return (
@@ -69,7 +71,12 @@ export default function Tasks() {
         </div>
       </div>
       <div className='tasks-container flex grid-cols-2 flex-col place-content-stretch gap-x-4 gap-y-8 sm:flex-row md:grid'>
-        {filteredArray?.length === 0 ? (
+        {!filteredArray ? (
+          <span className='text-lg'>
+            Loading{'   '}
+            <span className='loading loading-bars loading-sm mx-auto'></span>
+          </span>
+        ) : filteredArray?.length === 0 ? (
           <h2 className='text-lg'>No tasks</h2>
         ) : (
           filteredArray?.map((x) => {

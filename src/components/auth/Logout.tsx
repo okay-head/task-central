@@ -13,7 +13,7 @@ export default function Logout() {
     setTimeout(() => {
       // reset state
       setUser(null)
-      setTasks([])
+      setTasks(null)
 
       localStorage.clear()
       sessionStorage.clear()
