@@ -46,7 +46,7 @@ export default function Navbar() {
             {!user ? (
               <ul
                 tabIndex={0}
-                className='menu dropdown-content menu-sm z-[1] mt-3 w-48 rounded-box border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] bg-base-100 shadow lg:px-2 lg:py-4'
+                className='menu dropdown-content menu-sm z-[1] mt-3 w-28 rounded-box border border-[var(--fallback-bc,oklch(var(--bc)/0.2))] bg-base-100 shadow lg:px-2 lg:py-4'
               >
                 <li>
                   <Link to='auth/signin'>Login</Link>

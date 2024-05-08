@@ -37,6 +37,7 @@ export default function App() {
           Can take upto a minute or two due to cold starts of the dev
           environment
         </span>,
+        { duration: 4000 },
       )
       toastRef2.current = toast.loading(
         <span className='text-sm'>Please wait...</span>,
