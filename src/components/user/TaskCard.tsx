@@ -5,6 +5,7 @@ import { format } from 'fecha'
 import { Edit, Trash, Edit2 } from 'react-feather'
 import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
+import useDataStore from '../state/DataState'
 
 type T = {
   title: string
@@ -19,6 +20,7 @@ export default function TaskCard({
   updatedAt,
 }: T) {
   const [checked, setChecked] = useState(false)
+  const { setTasks, tasks } = useDataStore()
 
   const navigate = useNavigate()
   function playAudio() {
@@ -35,18 +37,20 @@ export default function TaskCard({
   }
 
   const handleDelete = async () => {
-    toast.success('Delete queued..')
-    console.log(id)
     try {
       await deleteFn(id)
-
-      window.location.reload()
+      const filteredArray = tasks.filter((x) => x._id != id)
+      setTasks(filteredArray)
+      toast.success('Task Deleted!', { duration: 850 })
+      // window.location.reload()
     } catch (error) {
-      // needlessly complicated because- types
-      let err: AxiosError | string = error as AxiosError
-      err = err.code || 'Unknown error. Check console'
-      toast.error(err)
-      console.log(error)
+      const err = error as AxiosError
+
+      //@ts-expect-error fml
+      toast.error(err.response.data?.message, {
+        duration: 1800,
+      })
+      console.error(err.response)
     }
   }
 

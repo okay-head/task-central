@@ -3,14 +3,17 @@ import { logoutFn } from '../api/apiCalls'
 import useGlobalStore from '../state/GlobalState'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import useDataStore from '../state/DataState'
 
 export default function Logout() {
   const setUser = useGlobalStore((state) => state.setUser)
+  const setTasks = useDataStore((state) => state.setTasks)
   const navigate = useNavigate()
   const logoutCleanup = () => {
     setTimeout(() => {
       // reset state
       setUser(null)
+      setTasks([])
 
       localStorage.clear()
       sessionStorage.clear()

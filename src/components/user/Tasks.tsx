@@ -5,9 +5,11 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useDebouncedCallback } from 'use-debounce'
 import { AxiosError } from 'axios'
+import useDataStore from '../state/DataState'
 
 export default function Tasks() {
-  const [tasks, setTasks] = useState<TMongoObject[]>([])
+  const { setTasks, tasks } = useDataStore()
+  // const [tasks, setTasks] = useState<TMongoObject[]>([])
 
   // setting up search query
   // decoupling controlled input state from filter query
@@ -36,15 +38,20 @@ export default function Tasks() {
         const response = await getAllFn()
         setTasks(response)
       } catch (error) {
-        // needlessly complicated because- types
-        let err: AxiosError | string = error as AxiosError
-        err = err.code || 'Unknown error. Check console'
-        toast.error(err)
-        console.log(error)
+        const err = error as AxiosError
+
+        //@ts-expect-error fml
+        toast.error(err.response.data?.message, {
+          duration: 1800,
+        })
+        console.error(err.response)
       }
     }
-    getTasks()
-  }, [])
+    // 🚄 PERFORMANCE: MOST BASIC GLOBAL STATE CACHING
+    // only get tasks if the global state array is zero
+    // this is incorrect because an array could be zero as well, check for null instead
+    if (tasks?.length === 0) getTasks()
+  }, [setTasks, tasks])
 
   return (
     <Container>

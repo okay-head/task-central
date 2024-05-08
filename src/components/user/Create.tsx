@@ -7,6 +7,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
+import useDataStore from '../state/DataState'
 
 type T = {
   mode: 'create' | 'edit'
@@ -14,6 +15,7 @@ type T = {
 }
 
 export default function Create({ mode, cardState = null }: T) {
+  const { tasks, setTasks } = useDataStore()
   const [defaultValues, setDefaultValues] = useState({
     title: !cardState || mode == 'create' ? '' : cardState.title,
     description: !cardState || mode == 'create' ? '' : cardState.description,
@@ -50,10 +52,13 @@ export default function Create({ mode, cardState = null }: T) {
     if (mode == 'create') {
       // POST
       try {
-        await postFn({
+        const doc = await postFn({
           title,
           description,
         })
+        // update global state
+        setTasks([doc, ...tasks])
+
         toast.success('Task created!', { duration: 850 })
         navigate('/user/tasks')
       } catch (error) {
@@ -70,19 +75,31 @@ export default function Create({ mode, cardState = null }: T) {
 
     // PATCH
     try {
-      cardState &&
-        (await patchFn(cardState?.id, {
-          title,
-          description,
-        }))
+      if (!cardState) return
+
+      const doc: TMongoObject = await patchFn(cardState?.id, {
+        title,
+        description,
+      })
+      const patched = tasks.map((x) => {
+        if (x._id != doc._id) return x
+        x.title = doc.title
+        x.description = doc.description
+        x.updatedAt = doc.updatedAt
+        return x
+      })
+
+      setTasks(patched)
       navigate('/user/tasks')
       toast.success('Task updated!', { duration: 800 })
     } catch (error) {
-      // needlessly complicated because- types
-      let err: AxiosError | string = error as AxiosError
-      err = err.code || 'Unknown error. Check console'
-      toast.error(err)
-      console.log(error)
+      const err = error as AxiosError
+
+      //@ts-expect-error fml
+      toast.error(err.response.data?.message, {
+        duration: 1800,
+      })
+      console.error(err.response)
     }
   }
 
