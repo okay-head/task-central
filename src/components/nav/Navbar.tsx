@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
-import { List, Plus, Moon } from 'react-feather'
+import { List, Plus, Moon, Sun } from 'react-feather'
 import useGlobalStore from '../state/GlobalState'
+import { useState } from 'react'
 export default function Navbar() {
   const { user } = useGlobalStore()
+  const [visible, setvisible] = useState(false)
   return (
     <div>
       <div className='navbar fixed bg-base-100 py-3 shadow lg:px-8'>
@@ -76,17 +78,16 @@ export default function Navbar() {
           <button
             className='btn btn-ghost btn-sm -ms-1 py-1'
             onClick={() => {
-              const currentTheme = document
-                .getElementsByTagName('html')[0]
-                .getAttribute('data-theme')
+              setvisible((v) => !v)
+              const currentTheme =
+                document.documentElement.getAttribute('data-theme')
 
               const newTheme = currentTheme === 'dim' ? 'light' : 'dim'
-              document
-                .getElementsByTagName('html')[0]
-                .setAttribute('data-theme', newTheme)
+              document.documentElement.setAttribute('data-theme', newTheme)
             }}
           >
-            <Moon size={24} className='' />
+            <Moon size={24} className={!visible ? 'hidden' : ''} />
+            <Sun size={24} className={visible ? 'hidden' : ''} />
           </button>
         </div>
       </div>
