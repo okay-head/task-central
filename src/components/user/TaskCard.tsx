@@ -38,6 +38,7 @@ export default function TaskCard({
 
   const handleDelete = async () => {
     try {
+      if (!tasks) throw new Error('Tasks is null')
       await deleteFn(id)
       const filteredArray = tasks.filter((x) => x._id != id)
       setTasks(filteredArray)

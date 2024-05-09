@@ -57,6 +57,7 @@ export default function Create({ mode, cardState = null }: T) {
           description,
         })
         // update global state
+        if (!tasks) throw new Error('Cannot post. Tasks is null')
         setTasks([doc, ...tasks])
 
         toast.success('Task created!', { duration: 850 })
@@ -81,6 +82,7 @@ export default function Create({ mode, cardState = null }: T) {
         title,
         description,
       })
+      if (!tasks) throw new Error('Cannot patch. Tasks is null')
       const patched = tasks.map((x) => {
         if (x._id != doc._id) return x
         x.title = doc.title
