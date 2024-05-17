@@ -53,6 +53,8 @@ const deleteFn = async (id: string) => {
   try {
     const res = await axios.delete(`${baseUrl}/tasks/${id}`, {
       withCredentials: true,
+      headers: { 'Content-Type': 'application/json' },
+      data: {},
     })
     return res.data
   } catch (error) {
@@ -110,7 +112,12 @@ const logoutFn = async () => {
     const res = await axios.post(
       `${baseUrl}/auth/logout`,
       {},
-      { withCredentials: true },
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
     )
     return res.data
   } catch (error) {
