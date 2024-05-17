@@ -167,7 +167,7 @@ export default function Create({ mode, cardState = null }: T) {
         </label>
 
         <button type='submit' className='btn btn-sm mt-2 max-w-28'>
-          Add
+          {mode == 'create' ? 'Add ' : 'Edit '}
         </button>
       </form>
     </Container>
