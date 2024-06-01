@@ -16,7 +16,6 @@ export default function App() {
   const [ready, setReady] = useState(false)
   const toastRef = useRef<null | string>(null)
   const toastRef2 = useRef<null | string>(null)
-  // i feel all of this should be app state
 
   useEffect(() => {
     // ping the API the first thing, to overcome cold start
@@ -78,11 +77,8 @@ export default function App() {
           <Route path='editTask' element={<CreateEditShell />} />
           <Route path='*' element={<NotFound />} />
           {/* right now it is empty, add a user profile later */}
-          {/* <Route path='logout' element={<Logout />} /> */}
         </Route>
         {/* --- Protected routes end--- */}
-
-        {/* <Route path='*' element={<NotFound />} /> */}
       </Routes>
     </div>
   )

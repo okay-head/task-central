@@ -15,9 +15,6 @@ export default function Home() {
               <p className='mx-auto mt-4 max-w-xl text-lg tracking-tight'>
                 Create and manage your tasks.
               </p>
-              {/* <p className='mx-auto mt-4 max-w-xl text-center text-sm tracking-tight text-warning'>
-                Note: Please enable third party cookies for the site to work
-              </p> */}
             </div>
             <div className='mx-auto mt-10 flex max-w-xl flex-col items-center justify-center gap-5 lg:flex-row'>
               {' '}
